@@ -49,4 +49,12 @@ public class DependencyInjectTest {
 		api = beanFactory.getBean("byName", HelloApi.class);
 		api.sayHello();
 	}
+	
+	@Test
+	public void testSetterDependencyInject()
+	{
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("setterDependencyInject.xml");
+		HelloApi api = beanFactory.getBean("bean", HelloApi.class);
+		api.sayHello();
+	}
 }
