@@ -1,25 +1,12 @@
-package cn.javass.spring.chapter2.helloworld;
+package cn.javass.spring.chapter3.helloworld;
 
 import org.junit.Test;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import cn.javass.spring.chapter2.helloworld.HelloApi;
 
-import cn.javass.spring.chapter3.helloworld.HelloApiDecorator;
-
-public class test {
-	{
-		System.out.println("a");
-	}
-
-	public test() {
-		System.out.println("construct");
-	}
-
-	{
-		System.out.println("b");
-	}
-
-	public static void main(String[] args) {
+public class MethodInjectTest {
+	@Test
+	public void testLookup() {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"chapter3/lookupMethodInject.xml");
 		System.out.println("=======singleton sayHello======");
@@ -34,4 +21,11 @@ public class test {
 		helloApi2.sayHello();
 	}
 
+	@Test
+	public void testMethodReplacer() {
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+				"chapter3/methodReplacerInject.xml");
+		Printer printer = context.getBean("printer", Printer.class);
+		printer.print("我将被替换");
+	}
 }

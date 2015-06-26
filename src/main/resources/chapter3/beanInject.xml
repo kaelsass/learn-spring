@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+http://www.springframework.org/schema/context                http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<bean id="helloApi" class="cn.javass.spring.chapter2.helloworld.HelloImpl">
+	</bean>
+
+	<bean id="decorator1" class="cn.javass.spring.chapter3.helloworld.HelloApiDecorator">
+		<constructor-arg index="0" ref="helloApi"></constructor-arg>
+	</bean>
+
+	<bean id="decorator2" class="cn.javass.spring.chapter3.helloworld.HelloApiDecorator">
+		<property name="api">
+			<ref bean="helloApi"></ref>
+		</property>
+	</bean>
+
+	<bean id="decorator3" class="cn.javass.spring.chapter3.helloworld.HelloApiDecorator">
+		<property name="api">
+			<ref local="helloApi"></ref>
+		</property>
+	</bean>
+</beans>  
